@@ -747,7 +747,7 @@ a long period. Avoid using `let stable` for values that are stable for only
 short periods of time as the overhead of continuously re-simplifying the
 program may result in worse performance instead of better.
 
-## Where
+### Where
 
 There is also an inline version of `let` known as `where`. This allows names to
 be bound within a non-sequence expression, e.g.:
