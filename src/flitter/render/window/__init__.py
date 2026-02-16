@@ -507,6 +507,10 @@ class Window(ProgramNode):
                 glfw.window_hint(glfw.CENTER_CURSOR, glfw.FALSE)
                 glfw.window_hint(glfw.SCALE_TO_MONITOR, glfw.TRUE)
             self.window = glfw.create_window(self.width, self.height, title, None, Window.Windows[0].window if Window.Windows else None)
+            errno, msg = glfw.get_error()
+            if errno:
+                self.window = None
+                raise RuntimeError(f"Unable to create window: {msg.decode('utf8')}")
             glfw.set_key_callback(self.window, self.key_callback)
             glfw.set_cursor_pos_callback(self.window, self.pointer_movement_callback)
             glfw.set_mouse_button_callback(self.window, self.pointer_button_callback)
